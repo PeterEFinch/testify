@@ -2149,7 +2149,9 @@ func buildErrorChainString(err error) string {
 	return chain
 }
 
-// NoFieldIsEmpty asserts that object, which must be a struct or eventually reference to one, has no empty exported fields.
+// NoFieldIsEmpty asserts that object, which must be a struct or eventually
+// reference to one, has no exported field with a value that is empty (following
+// the definition of empty used in [Empty]).
 func NoFieldIsEmpty(t TestingT, object interface{}, msgAndArgs ...interface{}) bool {
 	if reflect.TypeOf(object).Kind() == reflect.Ptr {
 		return NoFieldIsEmpty(t, reflect.ValueOf(object).Elem().Interface(), msgAndArgs)
